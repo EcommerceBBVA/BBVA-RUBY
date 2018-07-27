@@ -22,10 +22,10 @@ module Bancomer
   require 'bancomer/utils/search_params'
 
   #exceptions
-  require 'errors/bancomer_exception_factory'
-  require 'errors/bancomer_exception'
-  require 'errors/bancomer_transaction_exception'
-  require 'errors/bancomer_connection_exception'
+  require 'bancomer/errors/bancomer_exception_factory'
+  require 'bancomer/errors/bancomer_exception'
+  require 'bancomer/errors/bancomer_transaction_exception'
+  require 'bancomer/errors/bancomer_connection_exception'
 
   include BancomerUtils
 end

@@ -7,7 +7,7 @@ class Tokens < BancomerResource
   end
 
   def get(token_id)
-    get("/tokens/#{token_id}")
+    super(token_id)
   end
 
 end
