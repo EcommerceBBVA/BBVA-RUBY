@@ -1,20 +1,20 @@
-![Bancomer Ruby](http://www.openpay.mx/img/github/ruby.jpg)
+![Bancomer Ruby]()
 
-[![Build Status](https://travis-ci.org/open-pay/openpay-ruby.png?branch=master)](https://travis-ci.org/open-pay/bancomer-ruby)
+[![Build Status]()]()
 
-[![Gem Version](https://badge.fury.io/rb/bancomer.svg)](http://badge.fury.io/rb/bancomer)
+[![Gem Version]()]()
 
 ## Description
 
 ruby client for *Bancomer api* services (version 1.0)
 
-This is a ruby client implementing the payment services for *Bancomer* at openpay.mx
+This is a ruby client implementing the payment services for *Bancomer* at bbva.mx
 
 For more information about Bancomer visit:
- - http://openpay.mx/
+ - http://bbva.mx/
 
 For the full *Bancomer api* documentation take a look at:
- - http://docs-bancomer.openpay.mx/
+ - https://docs.ecommercebbva.com
 
 ## Installation
 
@@ -183,7 +183,7 @@ FactoryBot.define do
 This ruby API standardize the method names across all different resources using the **create**,**get**,**update** and **delete** verbs.
 
 For full method documentation take a look at:
-  - http://docs-bancomer.openpay.mx/
+  - https://docs.ecommercebbva.com
 
 The test suite at *test/spec* is a good source of reference.
 
@@ -387,10 +387,10 @@ In the Bancomer dashboard you are able to see every request and its correspondin
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
 - check bancomer_api.rb for Logger configuration
-- travis  https://travis-ci.org/open-pay/bancomer-ruby , if a test fails it will leave some records, it may affect posterior tests.
+- travis  https://travis-ci.org/bancomer-ruby , if a test fails it will leave some records, it may affect posterior tests.
    it is recommended to reset the console/account to assure a clean state after a failure occurs.
 
 ## More information
 For more use cases take a look at the *test/spec* folder
 
-  1. - http://docs-bancomer.openpay.mx/
+  1. - https://docs.ecommercebbva.com

@@ -27,7 +27,7 @@ class Charges < BancomerResource
     amount = options.fetch(:amount)
 
     if amount.nil? or transaction_id.nil?
-      raise OpenpayException.new
+      raise BBVAException.new
     end
 
     amount_hash = { amount: amount }
