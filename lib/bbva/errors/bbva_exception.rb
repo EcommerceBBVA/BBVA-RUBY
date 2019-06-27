@@ -1,4 +1,4 @@
-class BancomerException < StandardError
+class BbvaException < StandardError
 
   attr_reader :description
   attr_reader :http_code
@@ -8,7 +8,7 @@ class BancomerException < StandardError
   attr_reader :category
 
   def initialize(message=nil,json_message=true)
-  #bancomer errors  have a json error string
+  #bbva errors  have a json error string
    if json_message
       json= JSON.parse message
       @description = json['description']

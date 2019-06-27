@@ -1,6 +1,6 @@
-require 'bancomer_resource'
+require 'bbva_resource'
 
-class Tokens < BancomerResource
+class Tokens < BbvaResource
 
   def create(token)
     super(token)

@@ -1,5 +1,5 @@
 require 'ostruct'
-module BancomerUtils
+module BbvaUtils
 
   class SearchParams < OpenStruct
 

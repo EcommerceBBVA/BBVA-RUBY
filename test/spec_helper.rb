@@ -1,8 +1,8 @@
 $: << '.'
 $: << 'lib'
-$: << 'lib/bancomer'
+$: << 'lib/bbva'
 
-require 'bancomer'
+require 'bbva'
 require 'factory_bot'
 #uncomment below to test on travis-ci
 FactoryBot.find_definitions

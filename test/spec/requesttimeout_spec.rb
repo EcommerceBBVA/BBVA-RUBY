@@ -10,13 +10,13 @@ describe 'Request timeout exception' do
     
     #LOG.level=Logger::DEBUG
 
-    @bancomer=BancomerApi.new(@merchant_id, @private_key, false, 0)
-    @charges=@bancomer.create(:charges)
+    @bbva=BbvaApi.new(@merchant_id, @private_key, false, 0)
+    @charges=@bbva.create(:charges)
 
   end
 
-  it 'raise an BancomerConnectionException when the operation timeouts' do
-    expect{@charges.all}.to raise_error(BancomerConnectionException)
+  it 'raise an BbvaConnectionException when the operation timeouts' do
+    expect{@charges.all}.to raise_error(BbvaConnectionException)
   end
 
 end

@@ -1,3 +1,3 @@
-module Bancomer
+module Bbva
   VERSION = '1.0.0'
 end

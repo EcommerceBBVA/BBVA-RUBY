@@ -1,6 +1,6 @@
-require 'bancomer_resource'
+require 'bbva_resource'
 
-class Charges < BancomerResource
+class Charges < BbvaResource
 
   def refund(transaction_id, description, customer_id=nil)
     if customer_id

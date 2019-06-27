@@ -1,4 +1,4 @@
-![Bancomer Ruby]()
+![Bbva Ruby]()
 
 [![Build Status]()]()
 
@@ -6,22 +6,22 @@
 
 ## Description
 
-ruby client for *Bancomer api* services (version 1.0)
+ruby client for *Bbva api* services (version 1.0)
 
-This is a ruby client implementing the payment services for *Bancomer* at bbva.mx
+This is a ruby client implementing the payment services for *Bbva* at bbva.mx
 
-For more information about Bancomer visit:
+For more information about Bbva visit:
  - http://bbva.mx/
 
-For the full *Bancomer api* documentation take a look at:
+For the full *Bbva api* documentation take a look at:
  - https://docs.ecommercebbva.com
 
 ## Installation
 
    Add the following line to your Gem file
 
-    #bancomer gem
-     gem 'bancomer'
+    #bbva gem
+     gem 'bbva'
 
 Update your bundle:
 
@@ -29,7 +29,7 @@ Update your bundle:
 
 Or install it from the command line:
 
-    $ gem install bancomer
+    $ gem install bbva
 
 ### Requirements
 
@@ -40,7 +40,7 @@ Or install it from the command line:
 
 ### Initialization
 ```ruby
-require 'bancomer'
+require 'bbva'
 
 
 #merchant and private key
@@ -48,42 +48,42 @@ merchant_id='mywvupjjs9xdnryxtplq'
 private_key='***REMOVED***'
 
 
-#An bancomer resource factory instance is created out of the BancomerApi
+#An bbva resource factory instance is created out of the BbvaApi
 #it  points to the development environment  by default.
-bancomer=BancomerApi.new(merchant_id,private_key)
+bbva=BbvaApi.new(merchant_id,private_key)
 
 #To enable production mode you should pass a third argument as true.
-#bancomer_prod=BancomerApi.new(merchant_id,private_key,true)
+#bbva_prod=BbvaApi.new(merchant_id,private_key,true)
 
 #This ruby client manages a default timeout of 90 seconds to make the request 
-#    to Bancomer services, if you need to modify this value, you need to explicitly 
+#    to Bbva services, if you need to modify this value, you need to explicitly 
 #    define the type of environment and followed by the new value for the timeout.
 #Syntax:
-#   bancomer_prod=BancomerApi.new(merchant_id,private_key,isProduction,timeout)
+#   bbva_prod=BbvaApi.new(merchant_id,private_key,isProduction,timeout)
 #Example:
-#   bancomer_prod=BancomerApi.new(merchant_id,private_key,false,30)
+#   bbva_prod=BbvaApi.new(merchant_id,private_key,false,30)
  ```
 
-The bancomer factory instance is in charge to generate the required resources through a factory method (create).
+The bbva factory instance is in charge to generate the required resources through a factory method (create).
 Resource classes should be initialized using the factory method as described below.
 
  ```ruby
 #creating an instance for each available resource
-@charges = bancomer.create(:charges)
-@tokens = bancomer.create(:tokens)
+@charges = bbva.create(:charges)
+@tokens = bbva.create(:tokens)
 ```
 
-According to the current version of the *Bancomer api* the available resources are:
+According to the current version of the *Bbva api* the available resources are:
 
 - *charges*
 - *tokens*
 
-Each rest resource exposed in the rest *Bancomer api* is represented by a class in this ruby API, being **BancomerResource** the base class.
+Each rest resource exposed in the rest *Bbva api* is represented by a class in this ruby API, being **BbvaResource** the base class.
 
 
 ### Implementation
  Each resource depending of its structure and available methods, will have one or more of the methods described under the methods subsection.
- Below a short description about the implementation high level details. For detailed documentation take a look a the bancomer api documentation.
+ Below a short description about the implementation high level details. For detailed documentation take a look a the bbva api documentation.
 
 
 #### Arguments
@@ -98,13 +98,13 @@ The following illustrates the api design.
 
  ```ruby
 #Merchant
-hash_out=bancomer_resource.create(hash_in)
-json_out=bancomer_resource.create(json_in)
+hash_out=bbva_resource.create(hash_in)
+json_out=bbva_resource.create(json_in)
 
 
 #Customer
-hash_out=bancomer_resource.create(hash_in,customer_id)
-json_out=bancomer_resource.create(json_in,customer_id)
+hash_out=bbva_resource.create(hash_in,customer_id)
+json_out=bbva_resource.create(json_in,customer_id)
 
  ```
 
@@ -191,7 +191,7 @@ The test suite at *test/spec* is a good source of reference.
 
    Creates the given resource
  ```ruby
-     bancomer_resource.create(representation,customer_id=nil)
+     bbva_resource.create(representation,customer_id=nil)
  ```
 
 ##### get
@@ -199,7 +199,7 @@ The test suite at *test/spec* is a good source of reference.
    Gets an instance of a  given resource
 
 ```ruby
-bancomer_resource.get(object_id,customer_id=nil)
+bbva_resource.get(object_id,customer_id=nil)
 ```
 
 ##### update
@@ -207,7 +207,7 @@ bancomer_resource.get(object_id,customer_id=nil)
    Updates an instance of a given resource
 
 ```ruby
-bancomer_resource.update(representation,customer_id=nil)
+bbva_resource.update(representation,customer_id=nil)
 ```
 
 ##### delete
@@ -215,19 +215,19 @@ bancomer_resource.update(representation,customer_id=nil)
   Deletes an instance of the given resource
 
 ```ruby
-bancomer_resource.delete(object_id,customer_id=nil)
+bbva_resource.delete(object_id,customer_id=nil)
 ```
 
 #####all
    Returns an array of all instances of a resource
 ```ruby
-bancomer_resource.all(customer_id=nil)
+bbva_resource.all(customer_id=nil)
 ```
 
 ##### each
    Returns a block for each instance resource
 ```ruby
-bancomer_resource.each(customer_id=nil)
+bbva_resource.each(customer_id=nil)
  ```
 
 ##### delete_all(available only under the development environment)
@@ -235,8 +235,8 @@ bancomer_resource.each(customer_id=nil)
    Deletes all instances of the given resource
 
 ```ruby
-#in case this method is executed under the production environment an BancomerException will be raised.
-bancomer_resource.delete_all(customer_id=nil)
+#in case this method is executed under the production environment an BbvaException will be raised.
+bbva_resource.delete_all(customer_id=nil)
 ```
 
 
@@ -283,27 +283,27 @@ bancomer_resource.delete_all(customer_id=nil)
 
 This API generates 3 different Exception classes.
 
--  **BancomerException**: Generic base API exception class, Generic API exceptions.
+-  **BbvaException**: Generic base API exception class, Generic API exceptions.
 
      - Internal server error (500 Internal Server Error).
-     - BancomerApi factory method, invalid resource name.
+     - BbvaApi factory method, invalid resource name.
 
     Examples:
 
  ```ruby
   #production mode
-  bancomer_prod=BancomerApi.new(@merchant_id,@private_key,true)
-  customers=bancomer_prod.create(:customers)
-  customers.delete_all # will raise an BancomerException
+  bbva_prod=BbvaApi.new(@merchant_id,@private_key,true)
+  customers=bbva_prod.create(:customers)
+  customers.delete_all # will raise an BbvaException
  ```
 
   ```ruby
    #production mode
-   bancomer_prod=BancomerApi.new(@merchant_id,@private_key,true)
-   customers=bancomer_prod.create(:non_existing_resource)    # will raise an BancomerException
+   bbva_prod=BbvaApi.new(@merchant_id,@private_key,true)
+   customers=bbva_prod.create(:non_existing_resource)    # will raise an BbvaException
   ```
 
--  **BancomerConnectionException**: Exception class for connection related issues, errors happening prior  the server connection.
+-  **BbvaConnectionException**: Exception class for connection related issues, errors happening prior  the server connection.
 
      - Authentication Error (401 Unauthorized)
      - Connection Errors.
@@ -315,12 +315,12 @@ This API generates 3 different Exception classes.
      merchant_id='santa'
      private_key='invalid'
 
-     bancomer=BancomerApi.new(merchant_id, private_key)
-     customers=bancomer.create(:customers)
+     bbva=BbvaApi.new(merchant_id, private_key)
+     customers=bbva.create(:customers)
 
       begin
          customers.get('23444422211')
-      rescue BancomerConnectionException => e
+      rescue BbvaConnectionException => e
          e.http_code  #  => 401
          e.error_code # => 1002
          e.description# => 'The api key or merchant id are invalid.'
@@ -328,7 +328,7 @@ This API generates 3 different Exception classes.
        end
      ```
 
-- **BancomerTransactionException**: Errors happening after the initial connection has been initiated, errors during transactions.
+- **BbvaTransactionException**: Errors happening after the initial connection has been initiated, errors during transactions.
 
    - Bad Request (e.g. Malformed json,Invalid data)
    - Unprocessable Entity (e.g. invalid data)
@@ -344,7 +344,7 @@ email='foo'
 customer_hash = FactoryBot.build(:customer, email: email)
 begin
     customers.create(customer_hash)
-rescue BancomerTransactionException => e
+rescue BbvaTransactionException => e
     e.http_code# => 400
     e.error_code# => 1001
     e.description# => 'email\' not a well-formed email address'
@@ -357,7 +357,7 @@ end
 begin
   #non existing customer
   customers.delete('1111')
-rescue BancomerApiTransactionError => e
+rescue BbvaApiTransactionError => e
   e.http_code# => 404
   e.error_code# =>1005
   e.description# =>"The customer with id '1111' does not exist"
@@ -373,21 +373,21 @@ end
 - *json_message*
 
 For more information about categories, descriptions and codes take a look at:
-- http://docs.bancomer.mx/#errores
+- http://docs.bbva.mx/#errores
 - http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
 
 ## Debug
 
-In the Bancomer dashboard you are able to see every request and its corresponding request/response.
-    - https://sandbox-dashboard.bancomer.mx
+In the Bbva dashboard you are able to see every request and its corresponding request/response.
+    - https://sandbox-dashboard.bbva.mx
 
 ## Developer Notes
 
 - bank accounts for merchant cannot be created using the api. It should be done through the dashboard.
 - Is recommended to reset your account using the dashboard when running serious testing (assure clean state)
-- check bancomer_api.rb for Logger configuration
-- travis  https://travis-ci.org/bancomer-ruby , if a test fails it will leave some records, it may affect posterior tests.
+- check bbva_api.rb for Logger configuration
+- travis  https://travis-ci.org/bbva-ruby , if a test fails it will leave some records, it may affect posterior tests.
    it is recommended to reset the console/account to assure a clean state after a failure occurs.
 
 ## More information

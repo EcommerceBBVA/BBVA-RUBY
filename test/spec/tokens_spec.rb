@@ -8,8 +8,8 @@ describe Tokens do
 
     #LOG.level=Logger::DEBUG
 
-    @bancomer=BancomerApi.new(@merchant_id, @private_key)
-    @tokens=@bancomer.create(:tokens)
+    @bbva=BbvaApi.new(@merchant_id, @private_key)
+    @tokens=@bbva.create(:tokens)
 
   end
 

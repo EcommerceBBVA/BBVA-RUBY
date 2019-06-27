@@ -1,6 +1,6 @@
 require_relative '../spec_helper'
 
-describe 'BancomerResource' do
+describe 'BbvaResource' do
 
   before(:all) do
 
@@ -9,8 +9,8 @@ describe 'BancomerResource' do
 
     #LOG.level=Logger::DEBUG
 
-    @bancomer=BancomerApi.new(@merchant_id,@private_key)
-    @cards=@bancomer.create(:cards)
+    @bbva=BbvaApi.new(@merchant_id,@private_key)
+    @cards=@bbva.create(:cards)
 
   end
 
