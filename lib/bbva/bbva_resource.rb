@@ -1,7 +1,7 @@
-#This class is the abstract base class for other Bancomer resources
+#This class is the abstract base class for other Bbva resources
 #This class defines the basic rest verbs making use of the rest-api gem.
 #Method aliases are created to provide friendly names.
-class BancomerResource
+class BbvaResource
 
   attr_accessor :api_hook
 
@@ -9,7 +9,7 @@ class BancomerResource
     @merchant_id=merchant_id
     @private_key=private_key
     #assigns base url depending the requested env
-    @base_url=BancomerApi::base_url(production)
+    @base_url=BbvaApi::base_url(production)
     @errors=false
     @production=production
     @timeout=timeout
@@ -44,7 +44,7 @@ class BancomerResource
   def delete_all
 
     if env == :production
-      raise BancomerException.new('delete_all method cannot be used on production', false)
+      raise BbvaException.new('delete_all method cannot be used on production', false)
     end
 
     each do |res|
@@ -72,7 +72,7 @@ class BancomerResource
         :ssl_version => :TLSv1_2,
         :headers => {:accept => :json,
                      :content_type => :json,
-                     :user_agent => 'Bancomer/v1  Ruby-API',
+                     :user_agent => 'Bbva/v1  Ruby-API',
         }
     )
     json_out=nil
@@ -82,7 +82,7 @@ class BancomerResource
     rescue Exception => e
       @errors=true
       #will raise the appropriate exception and return
-      BancomerExceptionFactory::create(e)
+      BbvaExceptionFactory::create(e)
     end
 
     JSON[json_out]
@@ -105,7 +105,7 @@ class BancomerResource
         :ssl_version => :TLSv1_2,
         :headers => {:accept => :json,
                      :content_type => :json,
-                     :user_agent => 'Bancomer/v1  Ruby-API',
+                     :user_agent => 'Bbva/v1  Ruby-API',
         }
     )
 
@@ -115,7 +115,7 @@ class BancomerResource
     rescue Exception => e
       @errors=true
       #will raise the appropriate exception and return
-      BancomerExceptionFactory::create(e)
+      BbvaExceptionFactory::create(e)
     end
     #returns a hash
     JSON[res] if not res.empty?
@@ -149,7 +149,7 @@ class BancomerResource
           :payload => json,
           :headers => {:accept => :json,
                        :content_type => :json,
-                       :user_agent => 'Bancomer/v1  Ruby-API',
+                       :user_agent => 'Bbva/v1  Ruby-API',
                        :json => json}
       ).execute
 
@@ -157,7 +157,7 @@ class BancomerResource
     rescue Exception => e
       @errors=true
       #will raise the appropriate exception and return
-      BancomerExceptionFactory::create(e)
+      BbvaExceptionFactory::create(e)
     end
 
     #return
@@ -194,7 +194,7 @@ class BancomerResource
           :payload => json,
           :headers => {:accept => :json,
                        :content_type => :json,
-                       :user_agent => 'Bancomer/v1  Ruby-API',
+                       :user_agent => 'Bbva/v1  Ruby-API',
                        :json => json}
       ).execute
     rescue RestClient::BadRequest => e

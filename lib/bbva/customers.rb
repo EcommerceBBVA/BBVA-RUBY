@@ -1,6 +1,6 @@
-require 'bancomer_resource'
+require 'bbva_resource'
 
-class Customers < BancomerResource
+class Customers < BbvaResource
 
   #Bankaccount
   def create_bank_account(customer, bank_account)
@@ -31,7 +31,7 @@ class Customers < BancomerResource
 
   def delete_all_bank_accounts(customer)
     if env == :production
-      raise BancomerException.new('This method is not supported on PRODUCTION', false)
+      raise BbvaException.new('This method is not supported on PRODUCTION', false)
     end
     each_bank_account(customer) do |account|
       delete("#{customer}/bankaccounts/#{account['id']}")
@@ -154,7 +154,7 @@ class Customers < BancomerResource
 
   def delete_all_subscriptions(customer_id)
     if env == :production
-      raise BancomerException.new('This method is not supported on PRODUCTION', false)
+      raise BbvaException.new('This method is not supported on PRODUCTION', false)
     end
     all_subscriptions(customer_id).each do |sub|
       delete_subscription(customer_id, sub['id'])
@@ -176,7 +176,7 @@ class Customers < BancomerResource
 
   def delete_all_cards(customer_id)
     if env == :production
-      raise BancomerException.new('This method is not supported on PRODUCTION', false)
+      raise BbvaException.new('This method is not supported on PRODUCTION', false)
     end
     each_card(customer_id) do |card|
       delete_card(customer_id, card['id'])

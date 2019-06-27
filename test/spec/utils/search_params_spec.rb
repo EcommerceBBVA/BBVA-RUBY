@@ -1,7 +1,7 @@
 require_relative '../../spec_helper'
-include BancomerUtils
+include BbvaUtils
 
-describe BancomerUtils do
+describe BbvaUtils do
 
   describe SearchParams do
 

@@ -7,14 +7,14 @@ describe Charges do
     @merchant_id='mywvupjjs9xdnryxtplq'
     @private_key='sk_92b25d3baec149e6b428d81abfe37006'
 
-    @bancomer = BancomerApi.new(@merchant_id, @private_key)
-    @customers = @bancomer.create(:customers)
-    @tokens = @bancomer.create(:tokens)
+    @bbva = BbvaApi.new(@merchant_id, @private_key)
+    @customers = @bbva.create(:customers)
+    @tokens = @bbva.create(:tokens)
 
 
     #LOG.level=Logger::DEBUG
 
-    @charges=@bancomer.create(:charges)
+    @charges=@bbva.create(:charges)
 
   end
 

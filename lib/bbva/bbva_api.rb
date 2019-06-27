@@ -3,15 +3,15 @@ require 'base64'
 require 'rest-client'
 require 'uri'
 
-require 'bancomer/bancomer_resource_factory'
-require 'errors/bancomer_exception'
+require 'bbva/bbva_resource_factory'
+require 'errors/bbva_exception'
 
 LOG= Logger.new(STDOUT)
 #change to Logger::DEBUG if need trace information
 #due the nature of the information, we recommend to never use a log file when in debug
 LOG.level=Logger::FATAL
 
-class BancomerApi
+class BbvaApi
   #API Endpoints
   API_DEV='https://sand-api.ecommercebbva.com/v1/'
   API_PROD='https://api.ecommercebbva.com/v1/'
@@ -25,12 +25,12 @@ class BancomerApi
   end
 
   def create(resource)
-    klass=BancomerResourceFactory::create(resource, @merchant_id, @private_key, @production, @timeout)
+    klass=BbvaResourceFactory::create(resource, @merchant_id, @private_key, @production, @timeout)
     klass.api_hook=self
     klass
   end
 
-  def BancomerApi::base_url(production)
+  def BbvaApi::base_url(production)
     if production
       API_PROD
     else

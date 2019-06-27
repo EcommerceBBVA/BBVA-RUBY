@@ -1,6 +1,6 @@
 require_relative '../spec_helper'
 
-describe 'Bancomer Exceptions' do
+describe 'Bbva Exceptions' do
 
   before(:all) do
 
@@ -9,27 +9,27 @@ describe 'Bancomer Exceptions' do
     
     #LOG.level=Logger::DEBUG
 
-    @bancomer=BancomerApi.new(@merchant_id, @private_key)
-    @customers=@bancomer.create(:customers)
-    @cards=@bancomer.create(:cards)
+    @bbva=BbvaApi.new(@merchant_id, @private_key)
+    @customers=@bbva.create(:customers)
+    @cards=@bbva.create(:cards)
 
   end
 
-  describe BancomerException do
+  describe BbvaException do
 
-    it 'should raise an BancomerException when a non given resource is passed to the api factory' do
-     expect { @bancomer.create(:foo) }.to raise_exception BancomerException
+    it 'should raise an BbvaException when a non given resource is passed to the api factory' do
+     expect { @bbva.create(:foo) }.to raise_exception BbvaException
     end
 
-    it 'should raise an BancomerException when the delete_all method is used on production' do
-      @bancomerprod=BancomerApi.new(@merchant_id,@private_key,true)
-      cust=@bancomerprod.create(:customers)
-      expect { cust.delete_all }.to raise_exception BancomerException
+    it 'should raise an BbvaException when the delete_all method is used on production' do
+      @bbvaprod=BbvaApi.new(@merchant_id,@private_key,true)
+      cust=@bbvaprod.create(:customers)
+      expect { cust.delete_all }.to raise_exception BbvaException
     end
 
   end
 
-  describe BancomerTransactionException do
+  describe BbvaTransactionException do
 
     it 'should fail when an invalid field-value is passed in *email' do
       #invalid email format
@@ -37,10 +37,10 @@ describe 'Bancomer Exceptions' do
       customer_hash = FactoryBot.build(:customer, email: email)
 
       #perform checks
-      expect { @customers.create(customer_hash) }.to raise_exception BancomerTransactionException
+      expect { @customers.create(customer_hash) }.to raise_exception BbvaTransactionException
       begin
         @customers.create(customer_hash)
-      rescue BancomerTransactionException => e
+      rescue BbvaTransactionException => e
         #should have the corresponding attributes coming from the json message
         expect(e.http_code).to be 400
         expect(e.error_code).to be 1001
@@ -49,13 +49,13 @@ describe 'Bancomer Exceptions' do
       end
     end
 
-    it ' raise  an BancomerTransactionException when trying to delete a non existing bank account '  do
+    it ' raise  an BbvaTransactionException when trying to delete a non existing bank account '  do
       #non existing resource
       #perform checks
-      expect { @customers.delete('1111') }.to raise_exception  BancomerTransactionException
+      expect { @customers.delete('1111') }.to raise_exception  BbvaTransactionException
       begin
         @customers.delete('1111')
-      rescue BancomerTransactionException => e
+      rescue BbvaTransactionException => e
         #should have the corresponding attributes coming from the json message
         expect(e.http_code).to be 404
         expect(e.error_code).to be 1005
@@ -64,12 +64,12 @@ describe 'Bancomer Exceptions' do
       end
     end
 
-    it 'raise  an BancomerTransactionException when using an expired card' do
+    it 'raise  an BbvaTransactionException when using an expired card' do
       card_hash = FactoryBot.build(:expired_card)
-      expect { @cards.create(card_hash) }.to raise_error(BancomerTransactionException)
+      expect { @cards.create(card_hash) }.to raise_error(BbvaTransactionException)
       begin
         @cards.create(card_hash)
-      rescue BancomerTransactionException => e
+      rescue BbvaTransactionException => e
         expect(e.description).to match 'The card has expired'
         expect(e.error_code).to be 3002
       end
@@ -78,20 +78,20 @@ describe 'Bancomer Exceptions' do
 
   end
 
-  describe BancomerConnectionException do
+  describe BbvaConnectionException do
 
-    it 'raise an BancomerConnectionException when provided credentials are invalid' do
+    it 'raise an BbvaConnectionException when provided credentials are invalid' do
 
       merchant_id='santa'
       private_key='invalid'
 
-      bancomer=BancomerApi.new(merchant_id, private_key)
-      customers=bancomer.create(:customers)
-      expect { customers.delete('1111') }.to raise_exception  BancomerConnectionException
+      bbva=BbvaApi.new(merchant_id, private_key)
+      customers=bbva.create(:customers)
+      expect { customers.delete('1111') }.to raise_exception  BbvaConnectionException
 
       begin
         customers.delete('1111')
-      rescue BancomerConnectionException => e
+      rescue BbvaConnectionException => e
         #should have the corresponding attributes coming from the json message
         expect(e.http_code).to be 401
         expect(e.error_code).to be 1002

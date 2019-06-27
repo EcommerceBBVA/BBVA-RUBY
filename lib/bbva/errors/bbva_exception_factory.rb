@@ -1,6 +1,6 @@
-class BancomerExceptionFactory
+class BbvaExceptionFactory
 
-  def BancomerExceptionFactory::create(exception)
+  def BbvaExceptionFactory::create(exception)
 
     LOG.warn("An exception has been raised (original exception class: #{exception.class})")
 
@@ -12,8 +12,8 @@ class BancomerExceptionFactory
           RestClient::Conflict, RestClient::PaymentRequired,
           RestClient::UnprocessableEntity
 
-        oe=BancomerTransactionException.new exception.http_body
-        LOG.warn "-BancomerTransactionException: #{exception.http_body}"
+        oe=BbvaTransactionException.new exception.http_body
+        LOG.warn "-BbvaTransactionException: #{exception.http_body}"
         @errors=true
         raise oe
 
@@ -22,7 +22,7 @@ class BancomerExceptionFactory
         #since this exceptions are not based on the rest api exceptions
         #we do not have the json message so we just build the exception
         #with the original exception message set in e.description and e.message
-        oe=BancomerConnectionException.new(exception.message,false)
+        oe=BbvaConnectionException.new(exception.message,false)
         LOG.warn exception.message
         @errors=true
         raise oe
@@ -30,9 +30,9 @@ class BancomerExceptionFactory
       when  RestClient::BadGateway, RestClient::Unauthorized, RestClient::RequestTimeout
             LOG.warn exception
             if exception.http_body
-              oe=BancomerConnectionException.new exception.http_body
+              oe=BbvaConnectionException.new exception.http_body
             else
-              oe=BancomerConnectionException.new(exception.message, false)
+              oe=BbvaConnectionException.new(exception.message, false)
             end
             @errors=true
             raise oe
@@ -40,9 +40,9 @@ class BancomerExceptionFactory
       when  RestClient::Exception , RestClient::InternalServerError
             LOG.warn exception
             if exception.http_body
-              oe=BancomerException.new exception.http_body
+              oe=BbvaException.new exception.http_body
             else
-              oe=BancomerException.new(exception.message, false)
+              oe=BbvaException.new(exception.message, false)
             end
             @errors=true
             raise oe
