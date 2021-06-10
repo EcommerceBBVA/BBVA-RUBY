@@ -228,7 +228,18 @@ class BbvaResource
 
   def url(args = '', terminated = true)
     termination = terminated ? '/' : ''
-    @base_url + "#{@merchant_id}/" + resource_name + termination + args
+    delete_ending_slash(@base_url + "#{@merchant_id}/" + resource_name + termination + args)
+  end
+
+  def delete_ending_slash(url)
+    slash = '/'
+    strUrl = url.strip
+    strUrlAux = url.strip
+    ending = strUrl.to_s[-1,1]
+    if ending == slash
+      strUrlAux = strUrl.to_s[0,strUrl.length - 1]
+    end
+    strUrlAux
   end
 
   def resource_name
