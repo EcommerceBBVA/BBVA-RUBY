@@ -5,7 +5,7 @@ describe Charges do
   before(:all) do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
-    @private_key='***REMOVED***'
+    @private_key='sk_xxxxxxxxxxxxxxxxxxxxxxx'
 
     @bbva = BbvaApi.new(@merchant_id, @private_key)
     @customers = @bbva.create(:customers)
