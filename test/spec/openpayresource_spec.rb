@@ -5,7 +5,7 @@ describe 'BbvaResource' do
   before(:all) do
 
     @merchant_id='mywvupjjs9xdnryxtplq'
-    @private_key='***REMOVED***'
+    @private_key='sk_xxxxxxxxxxxxxxxxxxxxxxx'
 
     #LOG.level=Logger::DEBUG
 

@@ -45,7 +45,7 @@ require 'bbva'
 
 #merchant and private key
 merchant_id='mywvupjjs9xdnryxtplq'
-private_key='***REMOVED***'
+private_key='sk_xxxxxxxxxxxxxxxxxxxxxxx'
 
 
 #An bbva resource factory instance is created out of the BbvaApi
